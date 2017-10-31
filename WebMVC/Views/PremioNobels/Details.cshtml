@@ -1,4 +1,4 @@
-﻿@model WebMVC.PremioNobel
+﻿@model WebMVC.Models.PremioNobel
 
 @{
     ViewBag.Title = "Details";
@@ -31,7 +31,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Motivacao)
+            @Html.Raw(Model.Motivacao)
         </dd>
 
         <dt>
@@ -48,3 +48,26 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.PremioNobelId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<ul>
+    @foreach (var item in Model.Laureado)
+    {
+        if(item.LaureadoTipo == "1")
+        {
+            <li>
+                  <i class="fa fa-user"></i>
+                  <a href="@Url.Action("Details","LaureadoIndividuos",
+                  new { id= item.LaureadoId})">@Html.Raw(item.LaureadoIndividuo.Nome)</a>
+            </li>
+
+        }
+        else
+        {
+            <li>
+                <i class="fa fa-building"></i>
+                <a href="@Url.Action("Details","LaureadoOrganizacaos",
+                new { id= item.LaureadoId})">@Html.Raw(item.LaureadoOrganizacao.Nome)</a>
+            </li>
+        }
+    }
+</ul>

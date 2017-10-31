@@ -1,4 +1,4 @@
-﻿@model WebMVC.Models.Categoria
+﻿@model WebMVC.Models.Filiacao
 
 @{
     ViewBag.Title = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Categoria</h4>
+    <h4>Filiacao</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -18,9 +18,17 @@
             @Html.DisplayFor(model => model.Nome)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Cidade.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cidade.Nome)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CategoriaId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FiliacaoId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

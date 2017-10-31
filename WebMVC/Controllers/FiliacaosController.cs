@@ -10,107 +10,112 @@ using WebMVC.Models;
 
 namespace WebMVC.Controllers
 {
-    public class CategoriasController : Controller
+    public class FiliacaosController : Controller
     {
         private NobelEntities db = new NobelEntities();
 
-        // GET: Categorias
+        // GET: Filiacaos
         public ActionResult Index()
         {
-            return View(db.Categoria.ToList());
+            var filiacao = db.Filiacao.Include(f => f.Cidade);
+            return View(filiacao.ToList());
         }
 
-        // GET: Categorias/Details/5
+        // GET: Filiacaos/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categoria categoria = db.Categoria.Find(id);
-            if (categoria == null)
+            Filiacao filiacao = db.Filiacao.Find(id);
+            if (filiacao == null)
             {
                 return HttpNotFound();
             }
-            return View(categoria);
+            return View(filiacao);
         }
 
-        // GET: Categorias/Create
+        // GET: Filiacaos/Create
         public ActionResult Create()
         {
+            ViewBag.CidadeId = new SelectList(db.Cidade, "CidadeId", "Nome");
             return View();
         }
 
-        // POST: Categorias/Create
+        // POST: Filiacaos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CategoriaId,Nome")] Categoria categoria)
+        public ActionResult Create([Bind(Include = "FiliacaoId,Nome,CidadeId")] Filiacao filiacao)
         {
             if (ModelState.IsValid)
             {
-                db.Categoria.Add(categoria);
+                db.Filiacao.Add(filiacao);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(categoria);
+            ViewBag.CidadeId = new SelectList(db.Cidade, "CidadeId", "Nome", filiacao.CidadeId);
+            return View(filiacao);
         }
 
-        // GET: Categorias/Edit/5
+        // GET: Filiacaos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categoria categoria = db.Categoria.Find(id);
-            if (categoria == null)
+            Filiacao filiacao = db.Filiacao.Find(id);
+            if (filiacao == null)
             {
                 return HttpNotFound();
             }
-            return View(categoria);
+            ViewBag.CidadeId = new SelectList(db.Cidade, "CidadeId", "Nome", filiacao.CidadeId);
+            return View(filiacao);
         }
 
-        // POST: Categorias/Edit/5
+        // POST: Filiacaos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CategoriaId,Nome")] Categoria categoria)
+        public ActionResult Edit([Bind(Include = "FiliacaoId,Nome,CidadeId")] Filiacao filiacao)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(categoria).State = EntityState.Modified;
+                db.Entry(filiacao).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(categoria);
+            ViewBag.CidadeId = new SelectList(db.Cidade, "CidadeId", "Nome", filiacao.CidadeId);
+            return View(filiacao);
         }
 
-        // GET: Categorias/Delete/5
+        // GET: Filiacaos/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categoria categoria = db.Categoria.Find(id);
-            if (categoria == null)
+            Filiacao filiacao = db.Filiacao.Find(id);
+            if (filiacao == null)
             {
                 return HttpNotFound();
             }
-            return View(categoria);
+            return View(filiacao);
         }
 
-        // POST: Categorias/Delete/5
+        // POST: Filiacaos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Categoria categoria = db.Categoria.Find(id);
-            db.Categoria.Remove(categoria);
+            Filiacao filiacao = db.Filiacao.Find(id);
+            db.Filiacao.Remove(filiacao);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

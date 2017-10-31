@@ -1,4 +1,4 @@
-﻿@model WebMVC.Models.Cidade
+﻿@model WebMVC.Models.Filiacao
 
 @{
     ViewBag.Title = "Create";
@@ -6,13 +6,12 @@
 
 <h2>Create</h2>
 
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Cidade</h4>
+        <h4>Filiacao</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -24,18 +23,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PaisId, "PaisId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CidadeId, "CidadeId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("PaisId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PaisId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CidadeAtualId, "CidadeAtualId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CidadeAtualId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CidadeAtualId, "", new { @class = "text-danger" })
+                @Html.DropDownList("CidadeId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CidadeId, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -50,7 +41,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

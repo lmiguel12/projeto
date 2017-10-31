@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="245ae4fa15a94dfb9e5ce0c4cca96dd8" Name="Diagram1">
-        <EntityTypeShape EntityType="NobelModel.Categoria" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NobelModel.Cidade" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="NobelModel.Filiacao" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NobelModel.Laureado" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NobelModel.LaureadoIndividuo" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="NobelModel.LaureadoOrganizacao" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NobelModel.Pais" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NobelModel.PremioNobel" Width="1.5" PointX="7.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NobelModel.Categoria" Width="1.5" PointX="1.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NobelModel.Cidade" Width="1.5" PointX="2.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NobelModel.Filiacao" Width="1.5" PointX="4.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="NobelModel.Laureado" Width="1.5" PointX="5.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NobelModel.LaureadoIndividuo" Width="1.5" PointX="7.375" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="NobelModel.LaureadoOrganizacao" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NobelModel.Pais" Width="1.5" PointX="0.625" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NobelModel.PremioNobel" Width="1.5" PointX="3.75" PointY="4.5" IsExpanded="true" />
         <AssociationConnector Association="NobelModel.FK_PremioNobel_Categoria" ManuallyRouted="false" />
         <AssociationConnector Association="NobelModel.FK_Cidade_Cidade" ManuallyRouted="false" />
         <AssociationConnector Association="NobelModel.FK_Cidade_Pais" ManuallyRouted="false" />

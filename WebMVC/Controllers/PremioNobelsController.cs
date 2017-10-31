@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WebMVC;
+using WebMVC.Models;
 
 namespace WebMVC.Controllers
 {
@@ -17,7 +17,8 @@ namespace WebMVC.Controllers
         // GET: PremioNobels
         public ActionResult Index()
         {
-            var premioNobel = db.PremioNobel.Include(p => p.Categoria);
+            //var premioNobel = db.PremioNobel.Include(p => p.Categoria);
+            var premioNobel = db.PremioNobel.Include(p => p.Categoria).OrderBy(p => p.Ano);
             return View(premioNobel.ToList());
         }
 
@@ -28,7 +29,12 @@ namespace WebMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PremioNobel premioNobel = db.PremioNobel.Find(id);
+            int theId = id ?? 1;
+            //PremioNobel premioNobel = db.PremioNobel.Find(id);
+            PremioNobel premioNobel = db.PremioNobel.Where(p => p.PremioNobelId == theId)
+                .Include("Laureado")
+                .FirstOrDefault();
+
             if (premioNobel == null)
             {
                 return HttpNotFound();
