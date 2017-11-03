@@ -2,12 +2,13 @@
     var ctor = function () {
         console.log('ViewModel initiated...')
         var self = this;
-        var baseUri = 'http://localhost:60736/api/LaureadoIndividuos';
+        var baseUri = _baseUrl + '/api/LaureadoIndividuos';
         this.displayName = 'Lista de Laureados';
         this.laureadosURI
         //---Variáveis locais
         self.error = ko.observable();
         self.laureates = ko.observableArray();
+        self.srchName = ko.observable();
         //--- Internal functions
         function ajaxHelper(uri, method, data) {
             self.error(''); // Clear error message
@@ -24,13 +25,30 @@
             })
         }
         getLaureates = function () {
-            console.log('CALL: getLaureates...')
             ajaxHelper(baseUri, 'GET').done(function (data) {
                 self.laureates(data);
                 if (self.laureates().length == 0)
                     alert('No Laureates found...');
             });
         };
+        resetForm = function () {
+            console.log('CALL: resetForm...')
+            self.srchName("");
+            self.laureates.removeAll();
+            getLaureates();
+        };
+        laureadoDetalhes = function () {
+            console.log('CALL: getLaureates (with name)...')
+            newBaseUri = baseUri + "?srchName=" + self.srchName();
+            ajaxHelper(newBaseUri, 'GET').done(function (data) {
+                self.laureates(data);
+                if (self.laureates().length == 0)
+                    alert('No Laureates found...');
+            });
+        };
+        parseDate = function (theDate) {
+            return theDate.split('T')[0];
+        }
         start = function () {
             console.log('CALL: start...');
             getLaureates();

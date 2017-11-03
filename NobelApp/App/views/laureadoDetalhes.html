@@ -10,14 +10,14 @@
                     <dt>Data Nascimento</dt>
                     <dd data-bind="text: parseDate(DataNascimento)"></dd>
                     <dt>Cidade de Nascimento</dt>
-                    <dd data-bind="text: CidadeNascimento.Nome + '(' + CidadeNascimento.Pais.Nome + ')'"></dd>
+                    <dd data-bind="text: CidadeNascimento.Nome + ' (' + CidadeNascimento.Pais.Nome + ')'"></dd>
                     <!-- ko if:DataMorte != null -->
                     <dt>Data Morte</dt>
                     <dd data-bind="text: parseDate(DataMorte)"></dd>
                     <!-- /ko -->
                     <!-- ko if:CidadeMorte != null -->
                     <dt>Cidade de Morte</dt>
-                    <dd data-bind="text: CidadeMorte.Nome + '(' + CidadeMorte.Pais.Nome + ')'"></dd>
+                    <dd data-bind="text: CidadeMorte.Nome + ' (' + CidadeMorte.Pais.Nome + ')'"></dd>
                     <!-- /ko -->
                 </dl>
                 <hr />
@@ -39,7 +39,7 @@
                 <!-- ko foreach : Filiacao -->
                 <dl class="dl-horizontal">
                     <dt>Instituição</dt>
-                    <dd><span data-bind="text:Nome"></span> - <span data-bind="text: Cidade.Nome"></span>(<span data-bind="text: Cidade.Pais.Nome"></span>)</dd>
+                    <dd><span data-bind="text:Nome"></span> - <span data-bind="text: Cidade.Nome"></span> (<span data-bind="text: Cidade.Pais.Nome"></span>)</dd>
                 </dl>
                 <!-- /ko -->
                 <!-- /ko -->

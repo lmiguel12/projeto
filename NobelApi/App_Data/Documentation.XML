@@ -487,6 +487,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:NobelApi.Controllers.LaureadoIndividuosController.GetLaureadoIndividuo(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="srchName"></param>
+            <returns></returns>
+        </member>
         <member name="M:NobelApi.Controllers.LaureadoIndividuosController.GetLaureadoIndividuo(System.Int32)">
             <summary>
             descrição
