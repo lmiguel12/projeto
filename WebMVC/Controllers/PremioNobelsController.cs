@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebMVC.Models;
+using PagedList;
 
 namespace WebMVC.Controllers
 {
@@ -23,9 +24,31 @@ namespace WebMVC.Controllers
         }
 
         // GET: PremioNobels/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? page, string searchStr)
         {
-            if (id == null)
+            int aPage = (page ?? 1);
+            int pageSize = Int16.Parse(System.Configuration.ConfigurationManager.AppSettings["ItemsPorPagina"]);
+
+            ViewBag.searchStr = searchStr;
+
+            var x = db.PremioNobel.Include(p => p.Categoria);
+
+            if (!string.IsNullOrEmpty(searchStr))
+                x = x.Where(p => p.Titulo.Contains(searchStr));
+
+            return View(x.OrderBy(p => p.Ano).ToPagedList(aPage, pageSize));
+
+            /*
+            if (!String.IsNullOrEmpty(searchStr))
+            {
+                return View(db.PremioNobel.Where(p => p.Titulo.Contains
+                (searchStr)).Include(p => p.Categoria).OrderBy(p => p.Ano).ToPagedList(aPage, pageSize));
+            }
+
+            return View(db.PremioNobel.Include(p => p.Categoria).OrderBy(p => p.Ano).ToPagedList(aPage, pageSize));
+            */
+
+           /* if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -39,7 +62,7 @@ namespace WebMVC.Controllers
             {
                 return HttpNotFound();
             }
-            return View(premioNobel);
+            return View(premioNobel);*/
         }
 
         // GET: PremioNobels/Create
